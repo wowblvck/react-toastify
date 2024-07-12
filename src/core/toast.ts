@@ -208,7 +208,6 @@ toast.success = createToastByType(Type.SUCCESS);
 toast.info = createToastByType(Type.INFO);
 toast.error = createToastByType(Type.ERROR);
 toast.warning = createToastByType(Type.WARNING);
-toast.copy = createToastByType(Type.COPY);
 toast.warn = toast.warning;
 toast.dark = (content: ToastContent, options?: ToastOptions) =>
   dispatchToast(

@@ -2,7 +2,6 @@ export const enum Type {
   INFO = 'info',
   SUCCESS = 'success',
   WARNING = 'warning',
-  COPY = 'copy',
   ERROR = 'error',
   DEFAULT = 'default'
 }

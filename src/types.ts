@@ -5,13 +5,7 @@ type Nullable<T> = {
   [P in keyof T]: T[P] | null;
 };
 
-export type TypeOptions =
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'error'
-  | 'default'
-  | 'copy';
+export type TypeOptions = 'info' | 'success' | 'warning' | 'error' | 'default';
 
 export type Theme = 'light' | 'dark' | 'colored' | (string & {});
 
@@ -198,8 +192,6 @@ interface CommonOptions {
    * Set text depending on state (type) in header
    */
   label?: ToastLabel;
-
-  undoButton?: React.ReactNode | React.ReactElement;
 }
 
 export interface ToastOptions<Data = unknown> extends CommonOptions {

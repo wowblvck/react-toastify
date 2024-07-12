@@ -31,7 +31,6 @@ export const Toast: React.FC<ToastProps> = props => {
     style,
     bodyClassName,
     headerClassName,
-    undoButton,
     bodyStyle,
     progressClassName,
     progressStyle,
@@ -68,7 +67,7 @@ export const Toast: React.FC<ToastProps> = props => {
   const icon = getIcon(props);
   const isProgressControlled = !!progress || !autoClose;
 
-  const closeButtonProps = { closeToast, type, theme, undoButton };
+  const closeButtonProps = { closeToast, type, theme };
   let Close: React.ReactNode = null;
 
   if (closeButton === false) {

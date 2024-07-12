@@ -15,15 +15,6 @@
     opacity: 0.3;
   }
 
-  &--copy {
-    color: var(--toastify-text-color-light);
-    font-family: var(--toastify-font-family);
-    font-size: 16px;
-    line-height: normal;
-    opacity: 1;
-    align-self: center;
-  }
-
   & > svg {
     fill: currentColor;
     height: 16px;

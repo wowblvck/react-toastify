@@ -19,8 +19,6 @@ export function getLabel({ label, type }: LabelParams) {
     Label = label.warning;
   } else if (type === 'default' && label?.default) {
     Label = label.default;
-  } else if (type === 'copy' && label?.copy) {
-    Label = label.copy;
   }
 
   return Label;
