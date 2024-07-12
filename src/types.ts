@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { CloseButtonProps, IconProps } from './components';
 
 type Nullable<T> = {
   [P in keyof T]: T[P] | null;
 };
 
-export type TypeOptions = 'info' | 'success' | 'warning' | 'error' | 'default';
+export type TypeOptions =
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'default'
+  | 'copy';
 
 export type Theme = 'light' | 'dark' | 'colored' | (string & {});
 
@@ -31,6 +37,10 @@ export type ToastIcon =
   | false
   | ((props: IconProps) => React.ReactNode)
   | React.ReactElement<IconProps>;
+
+export type ToastLabel =
+  | false
+  | Partial<Record<TypeOptions, ReactNode | ReactElement>>;
 
 export type Id = number | string;
 
@@ -183,6 +193,13 @@ interface CommonOptions {
    * `Default: 'light'`
    */
   theme?: Theme;
+
+  /**
+   * Set text depending on state (type) in header
+   */
+  label?: ToastLabel;
+
+  undoButton?: React.ReactNode | React.ReactElement;
 }
 
 export interface ToastOptions<Data = unknown> extends CommonOptions {
@@ -310,6 +327,7 @@ export interface ToastProps extends ToastOptions {
   progressClassName?: ToastClassName;
   className?: ToastClassName;
   bodyClassName?: ToastClassName;
+  headerClassName?: ToastClassName;
   deleteToast: () => void;
   theme: Theme;
   type: TypeOptions;

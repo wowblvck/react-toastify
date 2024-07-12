@@ -4,3 +4,4 @@ export { ToastContainer } from './ToastContainer';
 export * from './Transitions';
 export * from './Toast';
 export * from './Icons';
+export * from './Label';

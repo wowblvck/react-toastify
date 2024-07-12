@@ -7,6 +7,7 @@ import { Default, isFn } from '../utils';
 import { CloseButton } from './CloseButton';
 import { ProgressBar } from './ProgressBar';
 import { getIcon } from './Icons';
+import { getLabel } from './Label';
 
 export const Toast: React.FC<ToastProps> = props => {
   const {
@@ -29,6 +30,8 @@ export const Toast: React.FC<ToastProps> = props => {
     className,
     style,
     bodyClassName,
+    headerClassName,
+    undoButton,
     bodyStyle,
     progressClassName,
     progressStyle,
@@ -65,7 +68,7 @@ export const Toast: React.FC<ToastProps> = props => {
   const icon = getIcon(props);
   const isProgressControlled = !!progress || !autoClose;
 
-  const closeButtonProps = { closeToast, type, theme };
+  const closeButtonProps = { closeToast, type, theme, undoButton };
   let Close: React.ReactNode = null;
 
   if (closeButton === false) {
@@ -77,6 +80,8 @@ export const Toast: React.FC<ToastProps> = props => {
   } else {
     Close = CloseButton(closeButtonProps);
   }
+
+  const label = getLabel(props);
 
   return (
     <Transition
@@ -105,14 +110,24 @@ export const Toast: React.FC<ToastProps> = props => {
           }
           style={bodyStyle}
         >
-          {icon != null && (
+          {(label !== null || icon !== null) && (
             <div
-              className={cx(`${Default.CSS_NAMESPACE}__toast-icon`, {
-                [`${Default.CSS_NAMESPACE}--animate-icon ${Default.CSS_NAMESPACE}__zoom-enter`]:
-                  !isLoading
-              })}
+              className={cx(
+                `${Default.CSS_NAMESPACE}__toast-header`,
+                headerClassName
+              )}
             >
-              {icon}
+              {icon !== null && (
+                <div
+                  className={cx(`${Default.CSS_NAMESPACE}__toast-icon`, {
+                    [`${Default.CSS_NAMESPACE}--animate-icon ${Default.CSS_NAMESPACE}__zoom-enter`]:
+                      !isLoading
+                  })}
+                >
+                  {icon}
+                </div>
+              )}
+              {label !== null && <div>{label}</div>}
             </div>
           )}
           <div>{children as ReactNode}</div>

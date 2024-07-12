@@ -58,5 +58,6 @@ export const typs = {
   SUCCESS: 'success',
   WARNING: 'warning',
   ERROR: 'error',
-  DEFAULT: 'default'
+  DEFAULT: 'default',
+  COPY: 'copy'
 };

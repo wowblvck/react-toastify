@@ -2,6 +2,7 @@ export const enum Type {
   INFO = 'info',
   SUCCESS = 'success',
   WARNING = 'warning',
+  COPY = 'copy',
   ERROR = 'error',
   DEFAULT = 'default'
 }
@@ -9,7 +10,7 @@ export const enum Type {
 export const enum Default {
   COLLAPSE_DURATION = 300,
   DEBOUNCE_DURATION = 50,
-  CSS_NAMESPACE = 'Toastify',
+  CSS_NAMESPACE = 'mirrorUI-toast',
   DRAGGABLE_PERCENT = 80,
   CONTAINER_ID = 1
 }

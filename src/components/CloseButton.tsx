@@ -6,17 +6,20 @@ export interface CloseButtonProps {
   closeToast: (e: React.MouseEvent<HTMLElement>) => void;
   type: TypeOptions;
   ariaLabel?: string;
+  undoLabel?: React.ReactNode | React.ReactElement;
   theme: Theme;
 }
 
 export function CloseButton({
   closeToast,
   theme,
+  type,
+  undoLabel,
   ariaLabel = 'close'
 }: CloseButtonProps) {
   return (
     <button
-      className={`${Default.CSS_NAMESPACE}__close-button ${Default.CSS_NAMESPACE}__close-button--${theme}`}
+      className={`${Default.CSS_NAMESPACE}__close-button ${Default.CSS_NAMESPACE}__close-button--${theme} ${Default.CSS_NAMESPACE}__close-button--${type}`}
       type="button"
       onClick={e => {
         e.stopPropagation();
@@ -24,12 +27,23 @@ export function CloseButton({
       }}
       aria-label={ariaLabel}
     >
-      <svg aria-hidden="true" viewBox="0 0 14 16">
-        <path
-          fillRule="evenodd"
-          d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
-        />
-      </svg>
+      {type === 'copy' ? (
+        undoLabel || 'Undo'
+      ) : (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+        >
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M6.92385 7.86672L2.19525 12.5953L3.13806 13.5381L7.86666 8.80953L12.8619 13.8048L13.8047 12.862L8.80947 7.86672L13.5381 3.13812L12.5953 2.19531L7.86666 6.92391L3.13806 2.19531L2.19525 3.13812L6.92385 7.86672Z"
+          />
+        </svg>
+      )}
     </button>
   );
 }

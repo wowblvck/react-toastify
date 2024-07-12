@@ -5,7 +5,7 @@
   min-height: var(--toastify-toast-min-height);
   box-sizing: border-box;
   margin-bottom: 1rem;
-  padding: 8px;
+  padding: var(--toastify-toast-padding);
   border-radius: var(--toastify-toast-bd-radius);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -17,22 +17,23 @@
   /* webkit only issue #791 */
   z-index: 0;
   overflow: hidden;
-  
+
   &--stacked {
     position: absolute;
     width: 100%;
     transform: translate3d(0, var(--y), 0) scale(var(--s));
     transition: transform 0.3s;
 
-    &[data-collapsed] .#{$rt-namespace}__toast-body, &[data-collapsed] .#{$rt-namespace}__close-button  {
+    &[data-collapsed] .#{$rt-namespace}__toast-body,
+    &[data-collapsed] .#{$rt-namespace}__close-button {
       transition: opacity 0.1s;
     }
 
-    &[data-collapsed="false"]{
+    &[data-collapsed='false'] {
       overflow: visible;
     }
 
-    &[data-collapsed="true"]:not(:last-child) > * {
+    &[data-collapsed='true']:not(:last-child) > * {
       opacity: 0;
     }
 
@@ -45,24 +46,24 @@
       bottom: 100%;
     }
 
-    &[data-pos="top"] {
+    &[data-pos='top'] {
       top: 0;
     }
 
-    &[data-pos="bot"]  {
+    &[data-pos='bot'] {
       bottom: 0;
     }
 
-    &[data-pos="bot"]#{&}:before {
+    &[data-pos='bot']#{&}:before {
       transform-origin: top;
     }
 
-    &[data-pos="top"]#{&}:before {
+    &[data-pos='top']#{&}:before {
       transform-origin: bottom;
     }
 
-    &:before{
-      content: "";
+    &:before {
+      content: '';
       position: absolute;
       left: 0;
       right: 0;
@@ -72,26 +73,30 @@
       z-index: -1;
     }
   }
-  
   &--rtl {
     direction: rtl;
   }
   &--close-on-click {
     cursor: pointer;
   }
+  &-header {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
   &-body {
     margin: auto 0;
     flex: 1 1 auto;
-    padding: 6px;
+    padding-right: 6px;
+    gap: 4px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     & > div:last-child {
       word-break: break-word;
       flex: 1;
     }
   }
   &-icon {
-    margin-inline-end: 10px;
     width: 20px;
     flex-shrink: 0;
     display: flex;

@@ -8,16 +8,26 @@
   opacity: 0.7;
   transition: 0.3s ease;
   align-self: flex-start;
+  line-height: 0;
   z-index: 1;
   &--light {
     color: #000;
     opacity: 0.3;
   }
 
+  &--copy {
+    color: var(--toastify-text-color-light);
+    font-family: var(--toastify-font-family);
+    font-size: 16px;
+    line-height: normal;
+    opacity: 1;
+    align-self: center;
+  }
+
   & > svg {
     fill: currentColor;
     height: 16px;
-    width: 14px;
+    width: 16px;
   }
 
   &:hover,
