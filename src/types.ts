@@ -7,6 +7,8 @@ type Nullable<T> = {
 
 export type TypeOptions = 'info' | 'success' | 'warning' | 'error' | 'default';
 
+export type ToastStatus = TypeOptions | 'pending';
+
 export type Theme = 'light' | 'dark' | 'colored' | (string & {});
 
 export type ToastPosition =
@@ -34,7 +36,7 @@ export type ToastIcon =
 
 export type ToastLabel =
   | false
-  | Partial<Record<TypeOptions, ReactNode | ReactElement>>;
+  | Partial<Record<ToastStatus, ReactNode | ReactElement>>;
 
 export type Id = number | string;
 

@@ -2,24 +2,16 @@ import { ToastProps } from '../types';
 
 export const Labels = {};
 
-export type LabelParams = Pick<ToastProps, 'label' | 'type'>;
+export type LabelParams = Pick<ToastProps, 'label' | 'type' | 'isLoading'>;
 
-export function getLabel({ label, type }: LabelParams) {
-  let Label: React.ReactNode = null;
-
+export function getLabel({ label, type, isLoading }: LabelParams) {
   if (label === false) {
-    // hide
-  } else if (type === 'error' && label?.error) {
-    Label = label.error;
-  } else if (type === 'info' && label?.info) {
-    Label = label.info;
-  } else if (type === 'success' && label?.success) {
-    Label = label.success;
-  } else if (type === 'warning' && label?.warning) {
-    Label = label.warning;
-  } else if (type === 'default' && label?.default) {
-    Label = label.default;
+    return null;
   }
 
-  return Label;
+  if (isLoading && label?.pending) {
+    return label.pending;
+  }
+
+  return label?.[type] ?? null;
 }
