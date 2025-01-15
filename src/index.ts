@@ -22,6 +22,7 @@ export type {
   Id,
   ToastItem,
   ClearWaitingQueueFunc,
-  OnChangeCallback
+  OnChangeCallback,
+  ToastIcon
 } from './types';
 export type { CloseButtonProps } from './components/CloseButton';
