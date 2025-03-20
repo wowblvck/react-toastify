@@ -306,6 +306,7 @@ export interface ToastProps extends ToastOptions {
   draggablePercent: number;
   draggableDirection?: DraggableDirection;
   progressClassName?: ToastClassName;
+  customProgressBar?: boolean;
   className?: ToastClassName;
   headerClassName?: ToastClassName;
   deleteToast: () => void;

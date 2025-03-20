@@ -9,7 +9,7 @@ export const enum Type {
 export const enum Default {
   COLLAPSE_DURATION = 300,
   DEBOUNCE_DURATION = 50,
-  CSS_NAMESPACE = 'mirrorUI-toast',
+  CSS_NAMESPACE = 'mui-toastify',
   DRAGGABLE_PERCENT = 80,
   CONTAINER_ID = 1
 }

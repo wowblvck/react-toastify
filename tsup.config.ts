@@ -55,7 +55,7 @@ export default defineConfig([
     entry: {
       'use-notification-center/index': 'src/addons/use-notification-center/index.ts'
     },
-    external: ['react', 'react-toastify'],
+    external: ['react', '@wowblvck/react-toastify'],
     clean: ['addons'],
     outDir: 'addons'
   }

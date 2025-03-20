@@ -21,6 +21,7 @@ export const Toast: React.FC<ToastProps> = props => {
     closeToast,
     transition: Transition,
     position,
+    headerClassName,
     className,
     style,
     progressClassName,
@@ -93,16 +94,21 @@ export const Toast: React.FC<ToastProps> = props => {
         ref={toastRef}
         {...(isIn && { role: role, 'aria-label': ariaLabel })}
       >
-        {icon != null && (
-          <div
-            className={cx(`${Default.CSS_NAMESPACE}__toast-icon`, {
-              [`${Default.CSS_NAMESPACE}--animate-icon ${Default.CSS_NAMESPACE}__zoom-enter`]: !isLoading
-            })}
-          >
-            {icon}
+        {(label !== null || icon !== null) && (
+          <div className={cx(`${Default.CSS_NAMESPACE}__toast-header`, headerClassName)}>
+            {icon !== null && (
+              <div
+                className={cx(`${Default.CSS_NAMESPACE}__toast-icon`, {
+                  [`${Default.CSS_NAMESPACE}--animate-icon ${Default.CSS_NAMESPACE}__zoom-enter`]: !isLoading
+                })}
+              >
+                {icon}
+              </div>
+            )}
+            {label !== null && <div>{label}</div>}
           </div>
         )}
-        {renderContent(children, props, !isRunning)}
+        <div>{renderContent(children, props, !isRunning)}</div>
         {Close}
         {!props.customProgressBar && (
           <ProgressBar
