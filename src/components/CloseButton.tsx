@@ -1,36 +1,26 @@
 import React from 'react';
 import { Default } from '../utils';
-import { Theme, TypeOptions } from '../types';
+import { CloseToastFunc, Theme, TypeOptions } from '../types';
 
 export interface CloseButtonProps {
-  closeToast: (e: React.MouseEvent<HTMLElement>) => void;
+  closeToast: CloseToastFunc;
   type: TypeOptions;
   ariaLabel?: string;
   theme: Theme;
 }
 
-export function CloseButton({
-  closeToast,
-  theme,
-  ariaLabel = 'close'
-}: CloseButtonProps) {
+export function CloseButton({ closeToast, theme, ariaLabel = 'close' }: CloseButtonProps) {
   return (
     <button
       className={`${Default.CSS_NAMESPACE}__close-button ${Default.CSS_NAMESPACE}__close-button--${theme}`}
       type="button"
       onClick={e => {
         e.stopPropagation();
-        closeToast(e);
+        closeToast(true);
       }}
       aria-label={ariaLabel}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 16 16"
-        fill="none"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path
           fillRule="evenodd"
           clipRule="evenodd"

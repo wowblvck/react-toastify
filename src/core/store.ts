@@ -1,4 +1,5 @@
 import {
+  ClearWaitingQueueParams,
   Id,
   NotValidatedToastProps,
   OnChangeCallback,
@@ -8,18 +9,11 @@ import {
   ToastOptions
 } from '../types';
 import { Default, canBeRendered, isId } from '../utils';
-import {
-  ContainerObserver,
-  createContainerObserver
-} from './containerObserver';
+import { ContainerObserver, createContainerObserver } from './containerObserver';
 
 interface EnqueuedToast {
   content: ToastContent<any>;
   options: NotValidatedToastProps;
-}
-
-interface ClearWaitingQueueParams {
-  containerId?: Id;
 }
 
 interface RemoveParams {
@@ -56,9 +50,7 @@ export function isToastActive(id: Id, containerId?: Id) {
 
 export function removeToast(params?: Id | RemoveParams) {
   if (!hasContainers()) {
-    renderQueue = renderQueue.filter(
-      v => params != null && v.options.toastId !== params
-    );
+    renderQueue = renderQueue.filter(v => params != null && v.options.toastId !== params);
     return;
   }
 
@@ -76,18 +68,15 @@ export function removeToast(params?: Id | RemoveParams) {
   }
 }
 
-export function clearWaitingQueue(p: ClearWaitingQueueParams = {}) {
+export const clearWaitingQueue = (p: ClearWaitingQueueParams = {}) => {
   containers.forEach(c => {
     if (c.props.limit && (!p.containerId || c.id === p.containerId)) {
       c.clearQueue();
     }
   });
-}
+};
 
-export function pushToast<TData>(
-  content: ToastContent<TData>,
-  options: NotValidatedToastProps
-) {
+export function pushToast<TData>(content: ToastContent<TData>, options: NotValidatedToastProps) {
   if (!canBeRendered(content)) return;
   if (!hasContainers()) renderQueue.push({ content, options });
 
@@ -108,9 +97,7 @@ type RegisterToggleOpts = {
 };
 
 export function registerToggle(opts: RegisterToggleOpts) {
-  containers
-    .get(opts.containerId || Default.CONTAINER_ID)
-    ?.setToggle(opts.id, opts.fn);
+  containers.get(opts.containerId || Default.CONTAINER_ID)?.setToggle(opts.id, opts.fn);
 }
 
 export function toggleToast(v: boolean, opt?: ToggleToastParams) {
