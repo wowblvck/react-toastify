@@ -108,7 +108,9 @@ export const Toast: React.FC<ToastProps> = props => {
             {label !== null && <div>{label}</div>}
           </div>
         )}
-        <div>{renderContent(children, props, !isRunning)}</div>
+        <div className={cx(`${Default.CSS_NAMESPACE}__toast-content`)}>
+          {renderContent(children, props, !isRunning)}
+        </div>
         {Close}
         {!props.customProgressBar && (
           <ProgressBar

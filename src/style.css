@@ -153,6 +153,10 @@
   gap: 4px;
 }
 
+.mui-toastify__toast-content {
+  line-height: 0;
+}
+
 .mui-toastify__toast-container[data-stacked='true'] {
   width: var(--toastify-toast-width);
 }
